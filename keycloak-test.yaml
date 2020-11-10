@@ -41,6 +41,10 @@ spec:
         - name: keycloak
           image: quay.io/keycloak/keycloak:11.0.3
           env:
+            - name: DB_VENDOR
+              value: mysql
+            - name: DB_ADDR
+              value: mysql-service
             - name: KEYCLOAK_USER
               value: "admin"
             - name: KEYCLOAK_PASSWORD
@@ -52,7 +56,7 @@ spec:
             - name: JGROUPS_DISCOVERY_PROTOCOL
               value: kubernetes.KUBE_PING
             - name: JGROUPS_DISCOVERY_PROPERTIES
-              value: port_range=0,dump_requests=true,namespace=keycloak
+              value: port_range=0,dump_requests=false,namespace=keycloak
             - name: CACHE_OWNERS_COUNT
               value: "2"
             - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
